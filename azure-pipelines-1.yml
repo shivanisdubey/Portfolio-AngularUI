@@ -1,0 +1,57 @@
+trigger: none
+
+resources:
+  pipelines:
+    - pipeline: buildArtifact
+      source: PortfolioBuild  #build pipeline name
+      trigger: true
+
+pool:
+  vmImage: ubuntu-latest
+
+variables:
+- group: NetlifySecret
+
+stages:
+- stage: DeployDev
+  displayName: Deploy to Dev
+  condition: eq(variables['Build.SourceBranchName'], 'test')
+  jobs:
+    - job: DevDeploy
+      steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            source: buildArtifact
+            artifact: angular-drop
+            path: $(Pipeline.Workspace)
+
+        - script: |
+            npm install -g netlify-cli
+            netlify deploy \
+              --dir=$(Pipeline.Workspace)/angular-drop \
+              --auth $NETLIFY_TOKEN
+          env:
+            NETLIFY_TOKEN: $(NETLIFY_TOKEN)
+          displayName: Netlify Dev Deploy
+
+- stage: DeployProd
+  displayName: Deploy to Prod
+  condition: eq(variables['Build.SourceBranchName'], 'master')
+  jobs:
+    - job: ProdDeploy
+      steps:
+        - task: DownloadPipelineArtifact@2
+          inputs:
+            source: buildArtifact
+            artifact: angular-drop
+            path: $(Pipeline.Workspace)
+
+        - script: |
+            npm install -g netlify-cli
+            netlify deploy \
+              --dir=$(Pipeline.Workspace)/angular-drop \
+              --prod \
+              --auth $NETLIFY_TOKEN
+          env:
+            NETLIFY_TOKEN: $(NETLIFY_TOKEN)
+          displayName: Netlify Prod Deploy
