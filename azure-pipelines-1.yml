@@ -15,7 +15,7 @@ variables:
 stages:
 - stage: DeployDev
   displayName: Deploy to Dev
-  condition: eq(variables['Build.SourceBranchName'], 'test')
+  condition: eq(variables['Build.SourceBranchName'], 'Test')
   jobs:
     - job: DevDeploy
       steps:
