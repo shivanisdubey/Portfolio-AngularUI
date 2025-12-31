@@ -1,0 +1,56 @@
+.floating-nav {
+  position: fixed;
+  top: 20px;              /* 👈 NOT touching top */
+  left: 50%;
+  transform: translateX(-50%);
+
+  display: flex;
+  gap: 1.5rem;
+  padding: 12px 24px;
+
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+
+  border-radius: 999px;   /* pill shape */
+
+border: 1px solid #FF9000;
+  z-index: 1000;
+}
+/* .floating-nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  transition: transform 0.2s ease;
+ 
+} */
+.floating-nav a {
+  position: relative;        /* 👈 REQUIRED */
+  display: inline-block;     /* 👈 REQUIRED */
+  
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+   font-family: "Saira", sans-serif;
+}
+.floating-nav a:hover {
+  transform: translateY(-2px);
+}
+.floating-nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: rgb(26, 42, 148);
+  transition: width 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.floating-nav a.active::after {
+  width: 30%;
+}
+.section {
+  min-height: 100vh;
+  scroll-margin-top: 120px; /* navbar offset */
+}

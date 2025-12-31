@@ -1,0 +1,33 @@
+<section class=" experience" appScrollAnimate>
+    <div class="container">
+        <div>
+            <h2 style="text-align: center; color: black;  font-family: 'Saira', sans-serif; font-size: 25px;">My
+                Experience</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item" *ngFor="let exp of experiences; let last = last" [class.last]="last">
+                <!-- Dot -->
+                <span class="dot"></span>
+
+                <!-- Content Card -->
+                <div class="content">
+                    <h3 class="role">{{ exp.role }}</h3>
+                    <p class="company">{{ exp.company }}</p>
+                    <p class="duration">{{ exp.duration }}</p>
+
+                    <p class="desc">
+                        {{ exp.description }}
+                    </p>
+
+                    <!-- Skills pills -->
+                    <div class="skills">
+                        <span class="skill" *ngFor="let skill of exp.skills">
+                            {{ skill }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+</section>
