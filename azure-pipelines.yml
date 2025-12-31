@@ -1,35 +1,49 @@
-# Node.js with Angular
-# Build a Node.js project that uses Angular.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
- branches:
+  branches:
     include:
-      - Test    
+      - Test
       - master
 
 pool:
   vmImage: ubuntu-latest
 
-variables:
-  FRONTEND_ENV: $[eq(variables['Build.SourceBranchName'], 'master') ? 'production':'development']
+stages:
+- stage: BuildTest
+  displayName: Build Test
+  variables:
+    FRONTEND_ENV: development
+  jobs:
+    - job: Build
+      steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '20.x'
+        - script: |
+            npm install -g @angular/cli
+            npm install
+            ng build --configuration $(FRONTEND_ENV)
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: dist
+            ArtifactName: angular-drop
+            publishLocation: Container
 
-
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '20.x'
-  displayName: 'Install Node.js'
-
-- script: |
-    npm install -g @angular/cli
-    npm install
-    ng build --configuration ${{ variables.FRONTEND_ENV }}
-  displayName: 'Build Angular App'
-  
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: dist
-    ArtifactName: angular-drop
-    publishLocation: Container
+- stage: BuildMaster
+  displayName: Build Master
+  variables:
+    FRONTEND_ENV: production
+  jobs:
+    - job: Build
+      steps:
+        - task: NodeTool@0
+          inputs:
+            versionSpec: '20.x'
+        - script: |
+            npm install -g @angular/cli
+            npm install
+            ng build --configuration $(FRONTEND_ENV)
+        - task: PublishBuildArtifacts@1
+          inputs:
+            PathtoPublish: dist
+            ArtifactName: angular-drop
+            publishLocation: Container
