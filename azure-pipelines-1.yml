@@ -1,51 +1,66 @@
-trigger: none
-
-resources:
-  pipelines:
-    - pipeline: buildArtifact
-      source: PortfolioBuild  #build pipeline name
-      trigger: true
+trigger: none  # Deploy manually or triggered via build pipeline
 
 pool:
   vmImage: ubuntu-latest
 
 variables:
-- group: NetlifySecret
+- group: NetlifySecret   # Must include NETLIFY_TOKEN, NETLIFY_DEV_SITE_ID, NETLIFY_PROD_SITE_ID
 
 stages:
+# -------------------------------
+# Dev Deployment Stage
+# -------------------------------
 - stage: DeployDev
   displayName: Deploy to Dev
-  condition: eq(variables['Build.SourceBranchName'], 'Test')
   jobs:
     - job: DevDeploy
+      displayName: Deploy Angular to Dev
+      # Job runs only if branch is Test
+      condition: eq(variables['Build.SourceBranchName'], 'Test')
       steps:
+        # Download artifact from build pipeline
         - task: DownloadPipelineArtifact@2
           inputs:
-            source: buildArtifact
+            buildType: 'specific'                   # Download from another pipeline
+            project: 'Portfolio'              # Change if different project
+            pipeline: 42                             # Build pipeline ID
+            runVersion: 'latest'                     # Latest successful build
             artifact: angular-drop
             path: $(Pipeline.Workspace)
 
+        # Deploy to Netlify Dev
         - script: |
             npm install -g netlify-cli
             netlify deploy \
               --dir=$(Pipeline.Workspace)/angular-drop \
+             
               --auth $NETLIFY_TOKEN
           env:
             NETLIFY_TOKEN: $(NETLIFY_TOKEN)
           displayName: Netlify Dev Deploy
 
+# -------------------------------
+# Prod Deployment Stage
+# -------------------------------
 - stage: DeployProd
   displayName: Deploy to Prod
-  condition: eq(variables['Build.SourceBranchName'], 'master')
   jobs:
     - job: ProdDeploy
+      displayName: Deploy Angular to Prod
+      # Job runs only if branch is master
+      condition: eq(variables['Build.SourceBranchName'], 'master')
       steps:
+        # Download artifact from build pipeline
         - task: DownloadPipelineArtifact@2
           inputs:
-            source: buildArtifact
+            buildType: 'specific'
+            project: 'Portfolio'
+            pipeline: 42
+            runVersion: 'latest'
             artifact: angular-drop
             path: $(Pipeline.Workspace)
 
+        # Deploy to Netlify Prod
         - script: |
             npm install -g netlify-cli
             netlify deploy \
