@@ -30,6 +30,7 @@ steps:
     npm install -g netlify-cli
     netlify deploy \
       --dir=dist \
+      --site $(NETLIFY_DEV_SITE_ID) \
       --auth $(NETLIFY_TOKEN)
   condition: eq(variables['Build.SourceBranchName'], 'Test')
 
@@ -38,6 +39,7 @@ steps:
     npm install -g netlify-cli
     netlify deploy \
       --dir=dist \
+       --site $(NETLIFY_PROD_SITE_ID) \
       --prod \
       --auth $(NETLIFY_TOKEN)
   condition: eq(variables['Build.SourceBranchName'], 'master')
