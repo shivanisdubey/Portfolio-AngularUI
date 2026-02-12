@@ -51,7 +51,7 @@ export class Contact {
       Message: this.contactForm.value.message
     };
     // Replace with your Azure Function URL
-    const apiUrl = 'http://localhost:7298/api/ContactEmailFunction';
+    const apiUrl = 'http://portfoliofuncapp-erg3feb9hgbxchhk.centralindia-01.azurewebsites.net/ContactEmailFunction';
 
     // Send POST request
     this.http.post(apiUrl, payload,{ responseType: 'text' }).subscribe({
