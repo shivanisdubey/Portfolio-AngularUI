@@ -14,7 +14,7 @@
     flex-direction: column;
     padding: 0 !important;
     /* IMPORTANT */
-        margin-top: 50px !important;
+        margin-top: 40px ;
     gap: 1rem;
 }
 
@@ -23,7 +23,7 @@
 /* Timeline container */
 .timeline {
   position: relative;
-  margin-left: 250px;
+  margin-left: 80px;
 }
 
 /* Vertical line */
@@ -108,3 +108,8 @@
   border-color: #FF9000;
 }
 
+@media (max-width: 768px) {
+.content{
+  padding-right: 5px;
+}
+}

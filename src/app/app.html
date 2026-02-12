@@ -1,9 +1,6 @@
+<canvas id="cursorCanvas"></canvas>
 <nav class="floating-nav">
-  <a
-    *ngFor="let item of navItems"
-    (click)="scrollTo(item.id)"
-    [class.active]="activeSection === item.id"
-  >
+  <a *ngFor="let item of navItems" (click)="scrollTo(item.id)" [class.active]="activeSection === item.id">
     {{ item.label }}
   </a>
 </nav>
@@ -31,4 +28,34 @@
   <section id="contact" class="section contact">
     <app-contact></app-contact>
   </section>
+
 </main>
+<div class="container ">
+  <div class="floating-contact ">
+
+
+    <div class="contacticon">
+      <a href="mailto:shimana.dubey@gmail.com" target="_blank">
+      <img src="/Images/mail.png" class="icon" style="padding-top: 3px;" title="Email">
+      </a>
+    </div>
+    <div class="contacticon">
+      <a href="https://www.linkedin.com/in/shivani-dubey-81a866218/" target="_blank">
+      <img src="/Images/Linkedin.png" title="Linkedin">
+      </a>
+    </div>
+    <div class="contacticon">
+      <a href="" target="_blank">
+      <img src="/Images/leetcode.png" title="Leetcode">
+    </a>
+    </div>
+    <div class="contacticon">
+      <a href="https://github.com/shivanisdubey" target="_blank">
+      <img src="/Images/GitHubicon.png" title="GitHub">
+    </a>
+    </div>
+
+  </div>
+
+
+</div>

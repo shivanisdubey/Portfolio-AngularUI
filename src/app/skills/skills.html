@@ -1,1 +1,14 @@
-<p>skills works!</p>
+<section class=" skills" appScrollAnimate>
+    <div class="container">
+        <div>
+            <h2 style="text-align: center; color: black;  font-family: 'Saira', sans-serif; font-size: 25px;">My
+                Skills</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card" *ngFor="let skill of skills">
+                <img [src]="skill.logo" [alt]="skill.name" />
+                <span>{{ skill.name }}</span>
+            </div>
+        </div>
+    </div>
+</section>

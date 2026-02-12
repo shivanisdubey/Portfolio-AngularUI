@@ -14,6 +14,163 @@
     flex-direction: column;
     padding: 0 !important;
     /* IMPORTANT */
-     margin-top: 50px !important;
+     margin-top: 40px ;
     gap: 1rem;
+}
+.projects-grid {
+    margin: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+  justify-items: center;
+}
+
+.project-card {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.03);
+}
+.page-card:hover {
+  transform: scale(1.03);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+}
+
+.project-card:hover .project-image {
+  filter: blur(3px) brightness(0.7);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.158); /* semi-transparent overlay */
+  opacity: 0;
+  text-align: center;
+  transition: opacity 0.3s ease;
+   font-family: 'Saira', sans-serif;
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+.page-card:hover .text-overlay {
+  opacity: 1;
+}
+
+.project-overlay h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+.text-overlay h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.project-overlay p {
+  font-size: 0.9rem;
+}
+
+.blurred {
+    filter: blur(1px);
+    
+}
+
+/* Overlay text */
+
+.project-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+
+.project-stack {
+  position: relative;
+  width: 350px;
+  height: 350px;
+  border-radius: 12px;
+  cursor: pointer;
+    margin: 0 auto;
+  
+}
+
+.page-card {
+  position: absolute;
+  width: 350px;
+  height: 350px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+}
+.project-stack:hover .text-overlay {
+  opacity: 1;
+
+}
+.text-overlay {
+  position: relative;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  opacity: 0;
+  text-align: center;
+   font-family: 'Saira', sans-serif;
+       margin-left: -41px;
+}
+/* slight rotation + offset */
+.page1 {
+  transform: rotate(-3deg);
+  top: 5px;
+  left: 10px;
+    transition: transform 0.3s ease;
+}
+.page2 {
+  transform: rotate(2deg);
+  top: 10px;
+  left: 20px;
+}
+.page3 {
+  transform: rotate(-1deg);
+  top: 15px;
+  left: 30px;
+}
+
+.project-stack:hover .page-card {
+  filter: blur(3px) brightness(0.7);
+}
+.project-stack:hover{
+   transform: scale(1.03);
+     transition: transform 0.3s ease;
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* or contain (explained below) */
+  display: block;
 }
