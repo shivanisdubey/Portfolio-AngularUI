@@ -1,6 +1,51 @@
-
-<section class=" contact" appScrollAnimate>
+<section class=" contact" >
   <div class="container">
-    <div><h2 style="text-align: center; color: black;  font-family: 'Saira', sans-serif; font-size: 25px;">My Contact</h2></div> 
+    <h2 style="text-align: center; color: black;  font-family: 'Saira', sans-serif; font-size: 25px;">
+      Get In Touch</h2>
+    <div class="contact-container">
+      <p class="subtitle">
+        Have a project or want to work together? Feel free to reach out.
+      </p>
+
+      <form [formGroup]="contactForm" (ngSubmit)="submit()" class="contact-form">
+        <div class="form-group">
+          <input type="text" formControlName="name" placeholder="Your Name" required />
+          <small class="error" *ngIf="contactForm.get('name')?.touched
+          && contactForm.get('name')?.errors?.['required']">
+            Name is required
+          </small>
+
+          <small class="error" *ngIf="contactForm.get('name')?.touched
+          && contactForm.get('name')?.errors?.['pattern']">
+            Only letters and spaces are allowed
+          </small>
+        </div>
+
+        <div class="form-group">
+          <input type="email" formControlName="email" placeholder="Your Email" required />
+          <small class="error" *ngIf="contactForm.get('email')?.touched
+          && contactForm.get('email')?.errors?.['required']">
+            Email is required
+          </small>
+          <small class="error" *ngIf="contactForm.get('email')?.touched
+          && contactForm.get('email')?.errors?.['email']">
+            Please enter a valid email address
+          </small>
+        </div>
+
+        <div class="form-group">
+          <textarea rows="5" formControlName="message" placeholder="Your Message" required></textarea>
+          <small class="error" *ngIf="contactForm.get('message')?.touched
+          && contactForm.get('message')?.errors?.['required']">
+            Message is required
+          </small>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          Send Message
+        </button>
+      </form>
+    </div>
+    <p class="subtitle" style="color: grey; text-align: center;">Loosely designed in Figma and brought to life with Angular and Azure Functions by yours truely💙 <br> © 2026 Shivani Dubey. All rights reserved.</p>
   </div>
 </section>

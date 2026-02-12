@@ -18,3 +18,105 @@ app-root {
   margin: 0;
   padding: 0;
 }
+
+@media (max-width: 768px) {
+
+  .container {
+        margin-top: 52px !important ;
+    }
+  /* Sections */
+  section {
+    min-height: auto !important;
+    padding-bottom:0.5rem;
+    font-size: 12px;
+    margin-top: 0px !important;
+    margin-bottom: 0px;
+  }
+
+  /* Floating Nav */
+  .floating-nav {
+   top: 12px !important;
+        padding: 4px 10px !important;
+        gap: 0.6rem !important;
+        font-size: 0.7rem !important;
+  }
+  /* Skills */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Projects */
+  .projects-grid{
+    grid-template-columns: 1fr;
+  }
+  .project-stack {
+    padding-left: -0.5px;
+  }
+
+  /* Disable cursor effect */
+  #cursorCanvas {
+    display: none;
+  }
+  form {
+    width: 100%;
+  }
+.timeline{
+  margin-left: 20px !important;
+}
+h2{
+  padding: 4px;
+  margin: 0px;;
+}
+  input,small,
+  textarea {
+    font-size: 16px; /* prevents iOS zoom */
+    margin-left: 11px;
+    width: 300px !important;
+    text-align: left;;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  button[type="submit"] {
+    margin-top: 1rem;
+  }
+  p{
+    font-size: 12px;
+    padding: 4px;
+    margin-top:0px;
+  }
+  .contact-container {
+    width: 350px !important;
+  }
+ .page-card{
+  width: 335px !important;
+  height: 340px !important;
+ }
+}
+
+/* =====================================================
+   📱 SMALL PHONES
+===================================================== */
+@media (max-width: 480px) {
+
+input,
+  textarea {
+    padding: 12px;
+    width: 300px;;
+  }
+
+  button[type="submit"] {
+    font-size: 0.95rem;
+  }
+  .floating-nav {
+    gap: 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
