@@ -1,59 +1,86 @@
-# Portfolio
+# Angular Portfolio Website
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+A responsive personal portfolio built with Angular and integrated with a secure .NET 8 Azure Function backend for contact form processing.
 
-## Development server
+🌐 Hosted on Netlify  
+⚙ Backend powered by Azure Functions  
+📩 Contact form integrated with SendGrid  
 
-To start a local development server, run:
+---
+
+## Overview
+
+This project is the frontend of a full-stack portfolio system.  
+It provides a modern UI and securely communicates with a serverless backend to process contact form submissions.
+
+---
+
+## Tech Stack
+
+- Angular  
+- TypeScript  
+- HTML / CSS  
+
+Backend:
+- .NET 8 Azure Function 
+
+---
+
+## Local Setup
+
+1. Clone Repository
+
+```bash
+git clone https://github.com/shivanisdubey/Portfolio-AngularUI.git
+cd Portfolio-AngularUI
+```
+
+2. Install Dependencies
+
+```bash
+npm install
+```
+
+3. Configure API URL
+
+Update:
+
+`src/Environments/environment.ts`
+
+```ts
+export const environment = {
+  production: false,
+  apiUrl: "Your Azure Function App URL"
+};
+```
+
+4. Run Application
 
 ```bash
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Visit:  http://localhost:4200
 
-## Code scaffolding
+---
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Backend Repository
 
-```bash
-ng generate component component-name
-```
+The contact API is implemented separately (Portfolio Azure Function Backend).
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Visit:  https://github.com/shivanisdubey/Portfolio-AzureFunctionBackend
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## Security
 
-To build the project run:
+- No API keys stored in frontend  
+- Backend secrets managed securely in Azure  
+- Only API endpoint URL is exposed  
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Author
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Shivani Dubey  
+Full Stack .NET Developer
