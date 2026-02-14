@@ -53,6 +53,8 @@ export const environment = {
   apiUrl: "Your Azure Function App URL"
 };
 ```
+(To test locally, update environment.ts to use the Azure Function local URL in apiUrl.)
+
 
 4. Run Application
 
