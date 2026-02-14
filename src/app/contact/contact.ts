@@ -3,6 +3,8 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Validators } from '@angular/forms';
+import { environment } from '../../Environment/environment';
+
 
 @Component({
   selector: 'app-contact',
@@ -50,11 +52,11 @@ export class Contact {
       Email: this.contactForm.value.email,
       Message: this.contactForm.value.message
     };
-    // Replace with your Azure Function URL
-    const apiUrl = 'https://portfoliofuncapp-erg3feb9hgbxchhk.centralindia-01.azurewebsites.net/api/ContactEmailFunction';
+    
+   
 
     // Send POST request
-    this.http.post(apiUrl, payload,{ responseType: 'text' }).subscribe({
+    this.http.post(environment.apiUrl, payload,{ responseType: 'text' }).subscribe({
       next: (res: any) => {
         console.log('Success:', res);
         // Optionally, show success message
